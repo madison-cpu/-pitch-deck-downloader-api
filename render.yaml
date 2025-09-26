@@ -4,8 +4,8 @@ services:
     env: python
     region: oregon
     plan: starter
-    buildCommand: apt-get update && apt-get install -y xvfb && pip install --upgrade pip && pip install -r requirements.txt && python install_chromium.py
-    startCommand: xvfb-run -a gunicorn --bind 0.0.0.0:$PORT --workers 1 --timeout 300 --preload app:app
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: gunicorn --bind 0.0.0.0:$PORT --workers 1 --timeout 300 --preload app:app
     healthCheckPath: /health
     envVars:
       - key: MAX_SLIDES
@@ -14,8 +14,4 @@ services:
         value: 180
       - key: PYTHONUNBUFFERED
         value: 1
-      - key: DISPLAY
-        value: ":99"
-      - key: XVFB_RUN
-        value: "xvfb-run -a"
 
