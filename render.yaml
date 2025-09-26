@@ -1,0 +1,15 @@
+version: 0.1
+
+services:
+  - type: web
+    name: pitch-deck-downloader-api
+    env: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+    healthCheckPath: /health
